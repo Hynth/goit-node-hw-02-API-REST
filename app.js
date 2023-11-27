@@ -6,7 +6,11 @@ const contactsRouter = require('./routes/api/contacts')
 
 const app = express()
 
+const connnectToDB = require('./db/config')
+
 const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short'
+
+connnectToDB()
 
 app.use(logger(formatsLogger))
 app.use(cors())
