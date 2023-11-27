@@ -32,7 +32,7 @@ const getTasksById = async (req, res, next) => {
             result: contactById,
         });
     } catch (error) {
-        next(error);
+        next();
     }
 };
 
@@ -70,7 +70,7 @@ const removeContact = async (req, res, next) => {
         result: contactRemoved,
         });
     } catch (error) {
-        next(error);
+        next();
     }
 };
 
@@ -98,7 +98,7 @@ const updateContact = async (req, res, next) => {
             result: contactUpdated,
         });      
     } catch (error) {
-        next(error);
+        next();
     }
 };
 
@@ -110,7 +110,11 @@ const updateStatusContact = async (req, res, next) => {
         };
 
         if(toUpdate.favorite == undefined){
-            next();
+            res.status(400).json({
+                title: 'Error',
+                msg: 'missing field favorite',
+                code: 400,
+            });
             return;
         }
 
@@ -128,7 +132,7 @@ const updateStatusContact = async (req, res, next) => {
             result: contactUpdated,
         });      
     } catch (error) {
-        next(error);
+        next();
     }
 };
 
